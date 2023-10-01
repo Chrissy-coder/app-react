@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FormattedDate from "./FormattedDate";
 import axios from "axios";
 import "./Weather.css";
 
@@ -7,10 +8,10 @@ export default function Weather(props) {
   function handleResponse(response) {
     setWeatherData({
       ready: true,
-      temperature: response.data.temperature.current,
+      temperature: response.data.main.temp,
       wind: response.data.wind.speed,
-      city: response.data.city,
-      date: "Sunday 07:00",
+      city: response.data.name,
+      date: new Date(response.data.dt * 1000),
       humidity: response.data.temperature.humidity,
       description: response.data.condition.description,
       icon_url: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
@@ -41,7 +42,9 @@ export default function Weather(props) {
         </form>
         <h1>{weatherData.city}</h1>
         <ul>
-          <li>{weatherData.date}</li>
+          <li>
+            <FormattedDate date={weatherData.date} />
+          </li>
           <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row mt-3">
@@ -68,8 +71,8 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const key = "8f63022fa4b60b22c3t7fe8f63b45ob9";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${key}&units=metric`;
+    const apiKey = "75f8d9557974dd3c2d36898a6bb729e2";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
     return "Loading..";
