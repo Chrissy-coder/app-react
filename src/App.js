@@ -8,7 +8,7 @@ export default function App() {
       <div className="container">
         <Weather />
         <footer>
-          This open-source project was coded by Christine Soropa on
+          This react open-source project was coded by Christine Soropa on
           <a
             href="https://github.com/Chrissy-coder/app-react"
             target="_blank"
