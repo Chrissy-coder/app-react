@@ -1,71 +1,65 @@
-import React, { useState } from "react";
-import WeatherInfo from "./WeatherInfo";
-import WeatherForecast from "./WeatherForecast";
-import axios from "axios";
+import React from "react";
 import "./Weather.css";
 
-export default function Weather(props) {
-  const [weatherData, setWeatherData] = useState({ ready: false });
-  const [city, setCity] = useState(props.defaultCity);
+export default function Weather() {
+  let weatherData = {
+    city: "Auckland",
+    temperature: "12",
+    date: "Sunday 8:34",
+    description: "Cloudy",
+    img: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+    humidity: 83,
+    wind: 2,
+  };
 
-  function handleResponse(response) {
-    setWeatherData({
-      ready: true,
-      coordinates: response.data.coord,
-      temperature: response.data.main.temp,
-      humidity: response.data.main.humidity,
-      date: new Date(response.data.dt * 1000),
-      description: response.data.weather[0].description,
-      icon: response.data.weather[0].icon,
-      wind: response.data.wind.speed,
-      city: response.data.name,
-    });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    search();
-  }
-
-  function handleCityChange(event) {
-    setCity(event.target.value);
-  }
-
-  function search() {
-    const apiKey = "75f8d9557974dd3c2d36898a6bb729e2";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-  }
-
-  if (weatherData.ready) {
-    return (
-      <div className="Weather">
-        <form onSubmit={handleSubmit}>
-          <div className="row">
-            <div className="col-9">
-              <input
-                type="search"
-                placeholder="Type a city.."
-                className="form-control"
-                autoFocus="on"
-                onChange={handleCityChange}
+  return (
+    <div className="Weather">
+      <form className="search-form" id="search-form">
+        <div className="row">
+          <div className="col-9">
+          <input
+            type="search"
+            placeholder="Type a city.."
+            autofocus="on"
+            autocomplete="off"
+            id="city-input"
+            className="form-control shadow-sm"
+          />
+          </div>
+          <input type="submit" value="Search" className="btn btn-success" />
+        </div>
+      </form>
+      <h1>{weatherData.city}</h1>
+      <ul>
+        <li>{weatherData.date}</li>
+        <li>{weatherData.description}</li>
+      </ul>
+      <div className="row">
+        <div className="col-6">
+          <div className="d-flex">
+            <div className="float-right">
+              <img
+                src={weatherData.img}
+                alt={weatherData.description}
+                className="float-left"
               />
-            </div>
-            <div className="col-3">
-              <input
-                type="submit"
-                value="Search"
-                className="btn btn-secondary "
-              />
+              <span>{weatherData.temperature}</span>
+              <span className="units">
+                <a href="/">°C</a> | <a href="/">°F</a>
+              </span>
             </div>
           </div>
-        </form>
-        <WeatherInfo data={weatherData} />
-        <WeatherForecast coordinates={weatherData.coordinates} />
+        </div>
+        <div className="col-6">
+          <ul>
+            <li>Humidity: {weatherData.humidity}%</li>
+            <li>Wind:{weatherData.wind} km/h</li>
+          </ul>
+        </div>
       </div>
-    );
-  } else {
-    search();
-    return "Loading..";
-  }
+
+      <span className="line"></span>
+      <div className="weather-forecast" id="forecast"></div>
+    </div>
+  );
 }
