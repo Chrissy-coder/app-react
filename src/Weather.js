@@ -17,16 +17,18 @@ export default function Weather() {
       <form className="search-form" id="search-form">
         <div className="row">
           <div className="col-9">
-          <input
-            type="search"
-            placeholder="Type a city.."
-            autofocus="on"
-            autocomplete="off"
-            id="city-input"
-            className="form-control shadow-sm"
-          />
+            <input
+              type="search"
+              placeholder="Type a city.."
+              autofocus="on"
+              autocomplete="off"
+              id="city-input"
+              className="form-control shadow-sm"
+            />
           </div>
-          <input type="submit" value="Search" className="btn btn-success" />
+          <div className="col-3">
+            <input type="submit" value="Search" className="btn btn-secondary" />
+          </div>
         </div>
       </form>
       <h1>{weatherData.city}</h1>
@@ -34,20 +36,16 @@ export default function Weather() {
         <li>{weatherData.date}</li>
         <li>{weatherData.description}</li>
       </ul>
-      <div className="row">
+      <div className="row mt-3">
         <div className="col-6">
           <div className="d-flex">
-            <div className="float-right">
-              <img
-                src={weatherData.img}
-                alt={weatherData.description}
-                className="float-left"
-              />
-              <span>{weatherData.temperature}</span>
-              <span className="units">
-                <a href="/">°C</a> | <a href="/">°F</a>
-              </span>
-            </div>
+            <img
+              src={weatherData.img}
+              alt={weatherData.description}
+              className="float-left"
+            />
+            <span className="temperature">{weatherData.temperature}</span>
+            <span className="units">°C</span>
           </div>
         </div>
         <div className="col-6">
