@@ -6,9 +6,9 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        <Weather defaultCity="Auckland"/>
+        <Weather defaultCity="Auckland" />
         <footer>
-          This react open-source project was coded by Christine Soropa on
+          This react project was coded by Christine Soropa on
           <a
             href="https://github.com/Chrissy-coder/app-react"
             target="_blank"
@@ -16,7 +16,9 @@ export default function App() {
           >
             {" "}
             Github
-          </a>
+          </a>{" "}
+          and hosted on{" "}
+          <a href="https://jazzy-semolina-235010.netlify.app/"> Netlify. </a>
         </footer>
       </div>
     </div>
