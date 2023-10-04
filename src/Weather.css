@@ -31,12 +31,11 @@
   line-height: 19px;
 }
 
-.Weather .temperature {
+.WeatherInfo .temperature {
   font-weight: bold;
   font-size: 64px;
   font-weight: 400;
   line-height: 64px;
- 
 }
 
 .Weather canvas {
