@@ -41,3 +41,7 @@
 .Weather canvas {
   margin: 10px auto;
 }
+
+.form-control {
+  border-color: #28292c;
+}
