@@ -12,13 +12,20 @@ export default function App() {
           <a
             href="https://github.com/Chrissy-coder/app-react"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             {" "}
             Github
           </a>{" "}
           and hosted on{" "}
-          <a href="https://jazzy-semolina-235010.netlify.app/"> Netlify. </a>
+          <a
+            href="https://jazzy-semolina-235010.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {" "}
+            Netlify.{" "}
+          </a>
         </footer>
       </div>
     </div>
